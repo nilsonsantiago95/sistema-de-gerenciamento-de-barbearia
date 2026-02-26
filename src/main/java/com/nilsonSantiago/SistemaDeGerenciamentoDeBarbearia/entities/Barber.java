@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 @Table(name = "tb_barber")
@@ -20,6 +23,9 @@ public class Barber implements Serializable {
     private String specialty;
     private String imgUrlBarber;
     private Boolean active;
+
+    @OneToMany(mappedBy = "barber")
+    private Set<Scheduling> appointments = new TreeSet<>();
 
     public Barber() {
     }
@@ -70,6 +76,10 @@ public class Barber implements Serializable {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Set<Scheduling> getAppointments() {
+        return appointments;
     }
 
     @Override

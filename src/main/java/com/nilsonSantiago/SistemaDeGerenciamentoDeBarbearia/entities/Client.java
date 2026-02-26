@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 @Table(name = "tb_client")
@@ -21,7 +23,18 @@ public class Client implements Serializable {
     private String phone;
     private String password;
 
+    @OneToMany(mappedBy = "client")
+    private final Set<Scheduling> appointments = new TreeSet<>();
+
     public Client() {
+    }
+
+    public Client(Long id, String name, String email, String phone, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
     }
 
     public Long getId() {
@@ -62,6 +75,10 @@ public class Client implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Scheduling> getAppointments() {
+        return appointments;
     }
 
     @Override
