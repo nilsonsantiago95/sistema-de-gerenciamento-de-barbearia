@@ -1,5 +1,6 @@
 package com.nilsonSantiago.SistemaDeGerenciamentoDeBarbearia.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nilsonSantiago.SistemaDeGerenciamentoDeBarbearia.enums.Status;
 import jakarta.persistence.*;
 
@@ -23,10 +24,12 @@ public class Scheduling implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "client_id")
+    @JsonIgnore
     private Client client;
 
     @OneToOne
     @JoinColumn(name = "barber_id")
+    @JsonIgnore
     private Barber barber;
     private Status status;
     private BigDecimal price;

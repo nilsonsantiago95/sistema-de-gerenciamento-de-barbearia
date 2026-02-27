@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -25,7 +24,7 @@ public class Barber implements Serializable {
     private Boolean active;
 
     @OneToMany(mappedBy = "barber")
-    private Set<Scheduling> appointments = new TreeSet<>();
+    private final Set<Scheduling> appointments = new TreeSet<>();
 
     public Barber() {
     }
