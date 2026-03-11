@@ -49,4 +49,8 @@ public class BarberService {
         return data == null;
     }
 
+    public void delete(Long id) {
+        barberRepository.deleteById(id);
+    }
+
 }

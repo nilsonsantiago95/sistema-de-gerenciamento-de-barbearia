@@ -23,7 +23,7 @@ public class Barber implements Serializable {
     private String imgUrlBarber;
     private Boolean active;
 
-    @OneToMany(mappedBy = "barber")
+    @OneToMany(mappedBy = "barber", cascade = CascadeType.ALL)
     private final Set<Scheduling> appointments = new TreeSet<>();
 
     public Barber() {

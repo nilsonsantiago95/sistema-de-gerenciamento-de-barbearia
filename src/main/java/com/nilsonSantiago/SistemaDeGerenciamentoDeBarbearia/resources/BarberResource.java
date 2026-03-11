@@ -48,4 +48,10 @@ public class BarberResource {
         return ResponseEntity.ok().body(barber);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Barber> delete(@PathVariable Long id) {
+        barberService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

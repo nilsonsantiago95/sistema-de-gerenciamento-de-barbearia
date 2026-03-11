@@ -23,7 +23,7 @@ public class Client implements Serializable {
     private String phone;
     private String password;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private final Set<Scheduling> appointments = new TreeSet<>();
 
     public Client() {
