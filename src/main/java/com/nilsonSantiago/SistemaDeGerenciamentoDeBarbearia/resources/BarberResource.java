@@ -1,14 +1,11 @@
 package com.nilsonSantiago.SistemaDeGerenciamentoDeBarbearia.resources;
 
+import com.nilsonSantiago.SistemaDeGerenciamentoDeBarbearia.config.RequestUri;
 import com.nilsonSantiago.SistemaDeGerenciamentoDeBarbearia.entities.Barber;
 import com.nilsonSantiago.SistemaDeGerenciamentoDeBarbearia.services.BarberService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.util.UriBuilder;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -23,11 +20,7 @@ public class BarberResource {
     @PostMapping
     public ResponseEntity<Barber> insert(@RequestBody Barber barber) {
         barber = barberService.insert(barber);
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(barber.getId())
-                .toUri();
+        URI uri = new RequestUri("/{id}", barber.getId()).getUri();
         return ResponseEntity.created(uri).body(barber);
     }
 
